@@ -1,17 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 
-/**
- * Reveal — triggers a CSS entrance animation once element enters the viewport.
- * direction: "up" | "left" | "right" | "scale"
- */
-export const Reveal = ({
-  children,
-  delay = 0,
-  as: As = "div",
-  className = "",
-  direction = "up",
-  ...rest
-}) => {
+// Wrap children to fade-up reveal when scrolled into view.
+export const Reveal = ({ children, delay = 0, as: As = "div", className = "", ...rest }) => {
   const ref = useRef(null);
   const [shown, setShown] = useState(false);
 
@@ -27,23 +17,16 @@ export const Reveal = ({
           }
         });
       },
-      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
+      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
     );
     obs.observe(el);
     return () => obs.disconnect();
   }, []);
 
-  const classMap = {
-    up: "reveal",
-    left: "reveal-left",
-    right: "reveal-right",
-    scale: "reveal-scale",
-  };
-
   return (
     <As
       ref={ref}
-      className={`${classMap[direction] || "reveal"} ${shown ? "in" : ""} ${className}`}
+      className={`reveal ${shown ? "in" : ""} ${className}`}
       style={{ transitionDelay: `${delay}ms` }}
       {...rest}
     >
@@ -52,11 +35,11 @@ export const Reveal = ({
   );
 };
 
-/** Animated count-up number that starts when scrolled into view. */
-export const CountUp = ({ to = 100, suffix = "", duration = 1700 }) => {
+// Animated count-up number
+export const CountUp = ({ to = 100, suffix = "", duration = 1600 }) => {
   const ref = useRef(null);
   const [val, setVal] = useState(0);
-  const started = useRef(false);
+  const startedRef = useRef(false);
 
   useEffect(() => {
     const el = ref.current;
@@ -64,11 +47,11 @@ export const CountUp = ({ to = 100, suffix = "", duration = 1700 }) => {
     const obs = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
-          if (e.isIntersecting && !started.current) {
-            started.current = true;
-            const t0 = performance.now();
+          if (e.isIntersecting && !startedRef.current) {
+            startedRef.current = true;
+            const start = performance.now();
             const tick = (now) => {
-              const p = Math.min((now - t0) / duration, 1);
+              const p = Math.min((now - start) / duration, 1);
               const eased = 1 - Math.pow(1 - p, 3);
               setVal(Math.round(eased * to));
               if (p < 1) requestAnimationFrame(tick);
