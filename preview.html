@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Five Agra Select — Premium Grain & Oilseeds Export</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+/* ── RESET & ROOT ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --deep-1:   #0B1E10;
+  --deep-2:   #112B18;
+  --green-1:  #1A4A2C;
+  --green-2:  #2E7D46;
+  --sage:     #4A7C5E;
+  --mint:     #D2E8DB;
+  --gold-1:   #E8B923;
+  --gold-2:   #C99B10;
+  --gold-h:   #F5CC42;
+  --gold-pale:#FDF8E3;
+  --white:    #FFFFFF;
+  --cream:    #FEFCF5;
+  --off:      #F6F8F4;
+  --tint:     #EFF5F1;
+  --ink:      #141F18;
+  --body:     #3B5044;
+  --muted:    #6B8077;
+}
+html { scroll-behavior: smooth; overflow-x: hidden; }
+body {
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background: #fff;
+  color: var(--body);
+  font-size: 16px;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+::selection { background: var(--gold-1); color: var(--deep-1); }
+.sora { font-family: 'Sora', sans-serif; }
+
+/* ── NAV ── */
+#nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 20px 0;
+  transition: background .3s, box-shadow .3s, padding .3s;
+}
+#nav.scrolled {
+  background: rgba(254,252,245,.96);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 1px 0 rgba(12,33,19,.08), 0 8px 24px -16px rgba(12,33,19,.12);
+  padding: 12px 0;
+}
+.nav-inner {
+  max-width: 1280px; margin: 0 auto; padding: 0 40px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo { display:flex; align-items:center; gap:10px; cursor:pointer; text-decoration:none; }
+.nav-logo-circle {
+  width:44px; height:44px; border-radius:50%;
+  background: linear-gradient(135deg,var(--deep-1),var(--green-1));
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Sora',sans-serif; color:var(--gold-1); font-weight:800; font-size:14px;
+}
+.nav-logo-text { line-height:1.1; }
+.nav-logo-text .t1 { display:block; font-size:13px; font-weight:700; letter-spacing:.06em; }
+.nav-logo-text .t2 { display:block; font-size:10px; color:var(--gold-1); letter-spacing:.22em; }
+.nav-links { display:flex; gap:36px; }
+.nav-link {
+  font-size:14px; font-weight:500; letter-spacing:.01em; cursor:pointer;
+  background:none; border:none; padding-bottom:2px; position:relative;
+  transition:color .18s;
+}
+.nav-link::after {
+  content:''; position:absolute; left:0; bottom:-6px;
+  width:0; height:2px;
+  background:linear-gradient(90deg,var(--gold-1),var(--gold-h));
+  border-radius:2px; transition:width .26s cubic-bezier(.34,1.56,.64,1);
+}
+.nav-link:hover::after { width:100%; }
+.btn-gold {
+  display:inline-flex; align-items:center; gap:10px;
+  background:linear-gradient(135deg,var(--gold-1),#D4A520);
+  color:var(--deep-1); border-radius:9999px; padding:13px 28px;
+  font-weight:700; font-size:14px; letter-spacing:.015em;
+  border:none; cursor:pointer;
+  box-shadow:0 6px 22px -8px rgba(200,155,16,.6),inset 0 1px 0 rgba(255,255,255,.25);
+  transition:transform .24s cubic-bezier(.34,1.56,.64,1), box-shadow .24s, background .22s;
+}
+.btn-gold:hover {
+  background:linear-gradient(135deg,var(--gold-h),var(--gold-1));
+  transform:translateY(-3px) scale(1.02);
+  box-shadow:0 18px 36px -12px rgba(200,155,16,.65), 0 0 0 5px rgba(232,185,35,.14);
+}
+
+/* ── EYEBROW ── */
+.eyebrow {
+  display:inline-flex; align-items:center; gap:14px;
+  font-size:11px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--green-2);
+}
+.eyebrow::before {
+  content:''; width:30px; height:2px; flex-shrink:0;
+  background:linear-gradient(90deg,var(--gold-1),var(--gold-h)); border-radius:2px;
+}
+.eyebrow.dark { color:rgba(209,232,218,.85); }
+.eyebrow.center { justify-content:center; }
+.eyebrow.center::before { display:none; }
+
+/* ── HERO ── */
+#hero {
+  position:relative; min-height:100vh;
+  display:flex; align-items:flex-end;
+  color:#fff; overflow:hidden;
+  background:var(--deep-1);
+}
+#hero-bg {
+  position:absolute; inset:-15% 0;
+  will-change:transform;
+  background:
+    linear-gradient(180deg,rgba(11,30,16,.38) 0%,rgba(11,30,16,.5) 45%,rgba(11,30,16,.95) 100%),
+    linear-gradient(120deg,rgba(232,185,35,.08) 0%,transparent 60%);
+  /* Simulate field photo with gradient */
+  background-color: #1a3d22;
+  background-image:
+    radial-gradient(ellipse 80% 60% at 60% 30%, rgba(46,125,70,.4) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 80% at 20% 70%, rgba(11,30,16,.8) 0%, transparent 60%),
+    linear-gradient(180deg,rgba(11,30,16,.38) 0%,rgba(11,30,16,.5) 45%,rgba(11,30,16,.95) 100%);
+}
+.hero-orb {
+  position:absolute; border-radius:50%; pointer-events:none; will-change:transform;
+  top:8%; right:12%; width:380px; height:380px;
+  background:radial-gradient(circle at 40% 40%,rgba(232,185,35,.22) 0%,rgba(232,185,35,.06) 50%,transparent 70%);
+  z-index:2;
+}
+.grain { position:absolute; border-radius:50%; pointer-events:none; will-change:transform; }
+.hero-content {
+  position:relative; z-index:4; will-change:transform;
+  max-width:1280px; margin:0 auto; padding:0 40px 120px; width:100%;
+}
+.hero-content h1 {
+  font-family:'Sora',sans-serif;
+  font-size:clamp(40px,7.2vw,78px);
+  font-weight:700; line-height:1.03; letter-spacing:-.028em;
+  margin-top:24px;
+}
+.hero-content h1 span { color:var(--gold-1); }
+.hero-content p {
+  margin-top:28px; max-width:680px;
+  font-size:17px; line-height:1.65; color:rgba(255,255,255,.83);
+}
+.hero-btns { margin-top:40px; display:flex; gap:24px; flex-wrap:wrap; align-items:center; }
+.btn-ghost {
+  display:inline-flex; align-items:center; gap:8px;
+  color:rgba(255,255,255,.9); font-weight:500; font-size:15px;
+  background:none; border:none; cursor:pointer; letter-spacing:.01em;
+  transition:gap .22s, color .22s;
+}
+.btn-ghost:hover { color:var(--gold-h); gap:14px; }
+.scroll-hint {
+  position:absolute; bottom:26px; left:50%; transform:translateX(-50%);
+  display:flex; flex-direction:column; align-items:center; gap:7px;
+  font-size:10px; letter-spacing:.22em; text-transform:uppercase;
+  color:rgba(255,255,255,.6); z-index:5;
+  animation:bounceDown 2.4s ease-in-out infinite;
+}
+@keyframes bounceDown {
+  0%,100% { transform:translateX(-50%) translateY(0); opacity:.6; }
+  50%      { transform:translateX(-50%) translateY(9px); opacity:1; }
+}
+.chevron { width:18px; height:18px; stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+
+/* ── STATS ── */
+#stats { background:#fff; padding:100px 0; }
+.container { max-width:1280px; margin:0 auto; padding:0 40px; }
+.stats-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:60px; margin-top:48px; }
+.stat { border-left:2px solid var(--gold-1); padding-left:22px; }
+.stat-num {
+  font-family:'Sora',sans-serif;
+  font-size:clamp(42px,5vw,66px);
+  color:var(--deep-1); font-weight:700; line-height:1; letter-spacing:-.04em;
+}
+.stat-label { margin-top:12px; font-size:13.5px; color:var(--muted); line-height:1.55; }
+
+/* ── PURPOSE ── */
+#purpose { background:var(--cream); padding:130px 0; }
+#purpose .inner { max-width:800px; margin:0 auto; text-align:center; }
+#purpose h2 {
+  font-family:'Sora',sans-serif; margin-top:32px;
+  font-size:clamp(28px,3.6vw,48px); font-weight:600; line-height:1.22; letter-spacing:-.018em; color:var(--deep-1);
+}
+.gold-ul { background-image:linear-gradient(transparent 68%,rgba(232,185,35,.5) 68%); padding-bottom:3px; font-weight:700; }
+#purpose p { margin-top:40px; font-size:16.5px; line-height:1.8; color:var(--body); }
+.divider { width:60px; height:2px; background:linear-gradient(90deg,transparent,var(--gold-1),transparent); margin:56px auto 0; }
+
+/* ── COMMODITIES ── */
+#commodities { background:var(--off); padding:130px 0; }
+.comm-header { display:grid; grid-template-columns:2fr 1fr; gap:48px; align-items:end; margin-bottom:64px; }
+.comm-header h2 {
+  font-family:'Sora',sans-serif; margin-top:20px;
+  font-size:clamp(32px,4.2vw,54px); font-weight:700; letter-spacing:-.026em; color:var(--deep-1); line-height:1.07;
+}
+.comm-header p { font-size:14px; line-height:1.7; color:var(--muted); }
+.cards-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
+.card {
+  background:#fff; border-radius:20px; overflow:hidden;
+  border:1px solid rgba(12,33,19,.07);
+  display:flex; flex-direction:column;
+  transition:transform .34s cubic-bezier(.34,1.56,.64,1), box-shadow .34s;
+  will-change:transform;
+}
+.card:hover { transform:translateY(-8px) rotate(.3deg); box-shadow:0 32px 64px -28px rgba(12,33,19,.28),0 0 0 1px rgba(232,185,35,.12); }
+.card-img {
+  aspect-ratio:4/3; overflow:hidden; background:var(--deep-2); position:relative;
+  display:flex; align-items:center; justify-content:center;
+}
+.card-img-inner {
+  width:100%; height:100%; transition:transform .8s cubic-bezier(.25,.46,.45,.94);
+  display:flex; align-items:center; justify-content:center;
+}
+.card:hover .card-img-inner { transform:scale(1.07); }
+.card-icon { font-size:72px; }
+.card-badge {
+  position:absolute; top:14px; left:14px;
+  background:var(--gold-1); color:var(--deep-1);
+  font-size:9.5px; font-weight:800; letter-spacing:.18em; text-transform:uppercase;
+  padding:6px 12px; border-radius:9999px;
+  box-shadow:0 4px 12px -4px rgba(200,155,16,.6);
+}
+.card-body { padding:28px; display:flex; flex-direction:column; gap:14px; flex:1; }
+.card-title { font-family:'Sora',sans-serif; font-size:21px; font-weight:700; color:var(--deep-1); letter-spacing:-.015em; }
+.card-desc { font-size:14px; line-height:1.68; color:var(--body); flex:1; }
+.chips { display:flex; flex-wrap:wrap; gap:8px; }
+.chip {
+  display:inline-flex; align-items:center; padding:5px 12px; border-radius:9999px;
+  background:var(--tint); color:var(--green-1); font-size:11.5px; font-weight:600;
+  border:1px solid rgba(46,125,70,.15);
+}
+.card-cta {
+  display:inline-flex; align-items:center; gap:6px;
+  color:var(--green-2); font-weight:600; font-size:14px;
+  background:none; border:none; cursor:pointer; padding:0;
+  transition:gap .2s, color .2s;
+}
+.card-cta:hover { color:var(--deep-1); gap:12px; }
+
+/* ── STORY ── */
+#story { background:#fff; padding:130px 0; }
+.story-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+.photo-wrap { position:relative; will-change:transform; }
+.photo-wrap::before {
+  content:''; position:absolute; inset:20px -20px -20px 20px;
+  border:1.5px solid rgba(232,185,35,.7); border-radius:20px; pointer-events:none;
+}
+.photo-inner {
+  border-radius:20px; overflow:hidden; aspect-ratio:4/5;
+  background:linear-gradient(160deg,var(--green-1),var(--deep-1));
+  display:flex; align-items:center; justify-content:center;
+  font-size:120px;
+}
+.story-right h2 {
+  font-family:'Sora',sans-serif; margin-top:20px;
+  font-size:clamp(30px,3.8vw,50px); font-weight:700; letter-spacing:-.026em; color:var(--deep-1); line-height:1.1;
+}
+.story-right p { margin-top:24px; font-size:16px; line-height:1.78; color:var(--body); }
+.checks { margin-top:32px; display:flex; flex-direction:column; gap:16px; list-style:none; }
+.check { display:flex; align-items:flex-start; gap:12px; }
+.check-icon {
+  width:28px; height:28px; border-radius:50%; flex-shrink:0; margin-top:1px;
+  background:var(--tint); display:flex; align-items:center; justify-content:center;
+}
+.check-icon svg { width:17px; height:17px; stroke:var(--green-2); fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+.check span { font-size:15px; line-height:1.62; color:var(--body); }
+
+/* ── SUPPLY CHAIN ── */
+#chain {
+  position:relative; padding:150px 0; color:#fff; overflow:hidden;
+  background:var(--deep-1);
+}
+.chain-bg {
+  position:absolute; inset:0; pointer-events:none;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 50%,rgba(46,125,70,.15) 0%,transparent 70%),
+    linear-gradient(170deg,rgba(11,30,16,.94) 0%,rgba(17,43,24,.9) 50%,rgba(11,30,16,.96) 100%);
+}
+.chain-orb {
+  position:absolute; border-radius:50%; pointer-events:none; will-change:transform;
+  top:10%; left:-8%; width:500px; height:500px;
+  background:radial-gradient(circle at 60% 40%,rgba(232,185,35,.18) 0%,transparent 65%);
+  z-index:1;
+}
+#chain .container { position:relative; z-index:2; }
+#chain h2 {
+  font-family:'Sora',sans-serif; margin-top:20px;
+  font-size:clamp(32px,4.4vw,58px); font-weight:700; letter-spacing:-.025em; line-height:1.08; max-width:720px;
+}
+.steps { display:grid; grid-template-columns:repeat(4,1fr); gap:40px; margin-top:72px; position:relative; }
+.steps::before {
+  content:''; position:absolute; top:8px; left:5%; right:5%; height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold-1) 15%,var(--gold-1) 85%,transparent);
+  opacity:.3;
+}
+.step-dot {
+  width:18px; height:18px; border-radius:50%; background:var(--gold-1);
+  box-shadow:0 0 0 5px rgba(232,185,35,.18),0 0 0 10px rgba(232,185,35,.07);
+  margin-bottom:28px;
+}
+.step-icon { font-size:26px; }
+.step h3 { font-family:'Sora',sans-serif; font-size:20px; font-weight:700; margin-top:16px; letter-spacing:-.01em; }
+.step p { font-size:14px; line-height:1.68; color:rgba(255,255,255,.72); margin-top:12px; }
+.chain-quote {
+  font-family:'Sora',sans-serif; text-align:center; margin-top:96px;
+  font-size:clamp(20px,2.6vw,34px); font-weight:400; font-style:italic;
+  line-height:1.38; max-width:900px; margin-left:auto; margin-right:auto;
+  color:rgba(255,255,255,.92); letter-spacing:-.006em;
+}
+.chain-quote .gld { color:var(--gold-1); font-style:normal; font-weight:700; }
+
+/* ── VALUES ── */
+#values { background:var(--cream); padding:130px 0; }
+#values h2 {
+  font-family:'Sora',sans-serif; margin-top:24px;
+  font-size:clamp(32px,4.2vw,54px); font-weight:700; letter-spacing:-.025em; color:var(--deep-1); line-height:1.08; max-width:740px;
+}
+.values-grid {
+  display:grid; grid-template-columns:repeat(3,1fr); margin-top:56px;
+  border-top:1px solid rgba(12,33,19,.07); border-left:1px solid rgba(12,33,19,.07);
+}
+.value {
+  padding:38px 34px; height:100%;
+  border-right:1px solid rgba(12,33,19,.07); border-bottom:1px solid rgba(12,33,19,.07);
+  transition:background .25s;
+}
+.value:hover { background:var(--tint); }
+.value-icon {
+  width:50px; height:50px; border-radius:15px; background:var(--tint);
+  display:inline-flex; align-items:center; justify-content:center;
+  font-size:22px; transition:background .22s, box-shadow .22s;
+}
+.value:hover .value-icon { background:var(--mint); box-shadow:0 6px 16px -6px rgba(46,125,70,.3); }
+.value h3 { font-family:'Sora',sans-serif; font-size:19px; font-weight:700; color:var(--deep-1); letter-spacing:-.01em; margin-top:24px; }
+.value p { font-size:14px; line-height:1.68; color:var(--body); margin-top:10px; }
+.certs { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; margin-top:64px; }
+.cert {
+  display:inline-flex; padding:8px 20px; border-radius:9999px;
+  color:var(--deep-2); font-size:11px; font-weight:700; letter-spacing:.16em; text-transform:uppercase;
+  border:1px solid rgba(12,33,19,.2);
+  transition:all .24s;
+}
+.cert:hover { background:var(--gold-1); border-color:var(--gold-1); color:var(--deep-1); transform:translateY(-1px); box-shadow:0 6px 14px -6px rgba(200,155,16,.5); }
+
+/* ── MARKETS ── */
+#markets { background:var(--off); padding:130px 0; position:relative; overflow:hidden; }
+.markets-orb {
+  position:absolute; top:20%; right:5%; width:320px; height:320px;
+  border-radius:50%; pointer-events:none; will-change:transform;
+  background:radial-gradient(circle,var(--gold-pale) 0%,transparent 70%);
+}
+.markets-grid { display:grid; grid-template-columns:1fr 1fr; gap:64px; position:relative; z-index:1; }
+.markets-left h2 {
+  font-family:'Sora',sans-serif; margin-top:20px;
+  font-size:clamp(30px,3.8vw,50px); font-weight:700; letter-spacing:-.025em; color:var(--deep-1); line-height:1.1;
+}
+.regions { margin-top:40px; list-style:none; }
+.region {
+  display:flex; align-items:baseline; justify-content:space-between; gap:24px;
+  padding:20px 0; border-bottom:1px solid rgba(12,33,19,.09);
+}
+.region-name { font-family:'Sora',sans-serif; font-size:18px; font-weight:700; color:var(--deep-1); }
+.region-crops { font-size:13px; color:var(--muted); text-align:right; white-space:nowrap; }
+.inco-card {
+  position:relative; overflow:hidden; border-radius:24px;
+  padding:46px 42px; color:#fff;
+  background:linear-gradient(155deg,var(--deep-1) 0%,var(--deep-2) 60%,#1A3A22 100%);
+}
+.inco-card::before {
+  content:''; position:absolute; top:-100px; right:-100px;
+  width:340px; height:340px; border-radius:50%; z-index:0;
+  background:radial-gradient(circle,rgba(232,185,35,.32) 0%,transparent 70%);
+}
+.inco-card > * { position:relative; z-index:1; }
+.inco-card h3 { font-family:'Sora',sans-serif; font-size:26px; font-weight:700; letter-spacing:-.015em; margin-top:20px; }
+.terms { display:flex; flex-direction:column; gap:24px; margin-top:32px; }
+.term-code { color:var(--gold-1); font-weight:800; font-size:14px; letter-spacing:.1em; }
+.term-desc { font-size:14px; line-height:1.62; color:rgba(255,255,255,.8); margin-top:5px; }
+.tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:40px; }
+.tag {
+  display:inline-flex; padding:8px 20px; border-radius:9999px;
+  color:rgba(230,245,235,.88); font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+  border:1px solid rgba(232,185,35,.38);
+  transition:all .24s;
+}
+.tag:hover { background:var(--gold-1); color:var(--deep-1); }
+
+/* ── CONTACT ── */
+#contact {
+  position:relative; padding:130px 0; color:#fff; overflow:hidden;
+  background:linear-gradient(155deg,var(--deep-1) 0%,#0F2517 40%,var(--deep-2) 100%);
+}
+.contact-orb1 {
+  position:absolute; border-radius:50%; pointer-events:none; will-change:transform;
+  top:-140px; right:-120px; width:520px; height:520px;
+  background:radial-gradient(circle,rgba(232,185,35,.2) 0%,transparent 68%);
+}
+.contact-orb2 {
+  position:absolute; border-radius:50%; pointer-events:none;
+  bottom:-100px; left:-80px; width:380px; height:380px;
+  background:radial-gradient(circle,rgba(46,125,70,.2) 0%,transparent 70%);
+}
+.contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:64px; position:relative; z-index:1; }
+#contact h2 {
+  font-family:'Sora',sans-serif; margin-top:20px;
+  font-size:clamp(32px,4.2vw,54px); font-weight:700; letter-spacing:-.025em; line-height:1.08;
+}
+#contact .sub { margin-top:24px; font-size:16px; line-height:1.72; color:rgba(255,255,255,.76); }
+.contact-info { display:grid; grid-template-columns:1fr 1fr; gap:32px; margin-top:48px; }
+.info-label {
+  font-size:10.5px; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--gold-1); font-weight:700; margin-bottom:5px;
+}
+.info-val { font-size:15px; color:#fff; }
+.info-val a { color:#fff; text-decoration:none; }
+.contact-quote {
+  margin-top:48px; padding-left:20px; border-left:3px solid var(--gold-1);
+  font-size:16px; line-height:1.62; color:rgba(255,255,255,.84); font-style:italic;
+}
+/* Glass form */
+.glass {
+  background:rgba(255,255,255,.06); backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,.13); border-radius:24px; padding:36px;
+}
+.form-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+.form-group { display:flex; flex-direction:column; gap:8px; }
+.form-group.full { grid-column:1/-1; }
+.form-label { font-size:10.5px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--gold-1); }
+.form-input, .form-select, .form-textarea {
+  width:100%; padding:13px 16px; border-radius:12px;
+  background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.15);
+  color:#fff; font-size:14px; font-family:inherit; outline:none;
+  transition:border-color .22s, background .22s, box-shadow .22s;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color:var(--gold-1); background:rgba(255,255,255,.1);
+  box-shadow:0 0 0 3px rgba(232,185,35,.15);
+}
+.form-input::placeholder, .form-textarea::placeholder { color:rgba(255,255,255,.4); }
+.form-select option { background:var(--deep-1); color:#fff; }
+.form-textarea { resize:vertical; min-height:100px; }
+.form-footer { display:flex; align-items:center; gap:16px; margin-top:28px; }
+.form-success { color:var(--gold-1); font-size:14px; font-weight:600; }
+
+/* ── FOOTER ── */
+footer {
+  background:var(--deep-1); color:rgba(255,255,255,.65); padding:80px 0 36px;
+  border-top:1px solid rgba(232,185,35,.12);
+}
+.footer-grid { display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:48px; }
+.footer-logo { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+.footer-logo-circle {
+  width:46px; height:46px; border-radius:50%;
+  background:linear-gradient(135deg,var(--deep-2),var(--green-1));
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Sora',sans-serif; color:var(--gold-1); font-weight:800; font-size:13px;
+}
+.footer-col-title { color:#fff; font-size:11px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; margin-bottom:20px; }
+.footer-links { list-style:none; display:flex; flex-direction:column; gap:12px; }
+.footer-link {
+  background:none; border:none; color:inherit; cursor:pointer; font-size:13px;
+  padding:0; text-align:left; transition:color .18s;
+}
+.footer-link:hover { color:var(--gold-1); }
+.footer-bottom {
+  display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px;
+  border-top:1px solid rgba(255,255,255,.07); margin-top:56px; padding-top:28px; font-size:12px;
+}
+
+/* ── REVEAL ANIMATIONS ── */
+.reveal { opacity:0; transform:translateY(32px); transition:opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); }
+.reveal.in { opacity:1; transform:translateY(0); }
+.reveal-l { opacity:0; transform:translateX(-40px); transition:opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); }
+.reveal-l.in { opacity:1; transform:translateX(0); }
+.reveal-r { opacity:0; transform:translateX(40px); transition:opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); }
+.reveal-r.in { opacity:1; transform:translateX(0); }
+.reveal-s { opacity:0; transform:scale(.92); transition:opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); }
+.reveal-s.in { opacity:1; transform:scale(1); }
+
+/* ── RESPONSIVE (basic) ── */
+@media(max-width:900px) {
+  .stats-grid,.cards-grid,.story-grid,.markets-grid,.contact-grid,.footer-grid,.values-grid,.steps {
+    grid-template-columns:1fr !important;
+  }
+  .comm-header { grid-template-columns:1fr; }
+  .form-grid { grid-template-columns:1fr; }
+  .contact-info { grid-template-columns:1fr; }
+  .nav-links { display:none; }
+  .hero-content h1 { font-size:42px; }
+  .hero-content { padding-bottom:80px; }
+  #hero-bg { inset:0; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════ NAV ══════════════ -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">
+      <div class="nav-logo-circle">FA</div>
+      <div class="nav-logo-text">
+        <span class="t1 sora" id="nav-t1" style="color:#fff">FIVE AGRA</span>
+        <span class="t2">SELECT</span>
+      </div>
+    </a>
+    <div class="nav-links" id="nav-links">
+      <button class="nav-link" id="nl1" style="color:#fff" onclick="scrollTo_('who')">Who We Are</button>
+      <button class="nav-link" id="nl2" style="color:#fff" onclick="scrollTo_('commodities')">Commodities</button>
+      <button class="nav-link" id="nl3" style="color:#fff" onclick="scrollTo_('chain')">Field to Vessel</button>
+      <button class="nav-link" id="nl4" style="color:#fff" onclick="scrollTo_('markets')">Global Markets</button>
+    </div>
+    <button class="btn-gold" onclick="scrollTo_('contact')">Request a Quote ›</button>
+  </div>
+</nav>
+
+<!-- ══════════════ HERO ══════════════ -->
+<section id="hero">
+  <div id="hero-bg"></div>
+  <div class="hero-orb" id="hero-orb"></div>
+
+  <!-- Floating grain particles -->
+  <div class="grain" id="g0"  style="left:13%;top:18%;width:34px;height:13px;background:#E8B923;opacity:.30;transform:rotate(22deg)"></div>
+  <div class="grain" id="g1"  style="left:78%;top:30%;width:20px;height:8px; background:#E8B923;opacity:.22;transform:rotate(-18deg)"></div>
+  <div class="grain" id="g2"  style="left:87%;top:12%;width:26px;height:10px;background:#fff;   opacity:.18;transform:rotate(48deg)"></div>
+  <div class="grain" id="g3"  style="left:5%; top:62%;width:16px;height:6px; background:#E8B923;opacity:.28;transform:rotate(-32deg)"></div>
+  <div class="grain" id="g4"  style="left:58%;top:80%;width:22px;height:9px; background:#fff;   opacity:.20;transform:rotate(12deg)"></div>
+  <div class="grain" id="g5"  style="left:36%;top:92%;width:18px;height:7px; background:#E8B923;opacity:.24;transform:rotate(-42deg)"></div>
+  <div class="grain" id="g6"  style="left:93%;top:56%;width:28px;height:11px;background:#fff;   opacity:.16;transform:rotate(36deg)"></div>
+  <div class="grain" id="g7"  style="left:24%;top:44%;width:12px;height:5px; background:#E8B923;opacity:.22;transform:rotate(-24deg)"></div>
+  <div class="grain" id="g8"  style="left:68%;top:8%; width:16px;height:6px; background:#fff;   opacity:.15;transform:rotate(55deg)"></div>
+  <div class="grain" id="g9"  style="left:45%;top:22%;width:10px;height:4px; background:#E8B923;opacity:.18;transform:rotate(-10deg)"></div>
+
+  <div class="hero-content" id="hero-text">
+    <div class="reveal" style="transition-delay:0ms">
+      <div class="eyebrow dark">GRAIN &amp; OILSEEDS · ORIGIN UKRAINE</div>
+    </div>
+    <div class="reveal" style="transition-delay:130ms">
+      <h1 class="sora">Connecting Ukraine's Harvest <span>to the World</span></h1>
+    </div>
+    <div class="reveal" style="transition-delay:260ms">
+      <p>We partner with Ukrainian farmers to source, quality-control and ship premium grain and oilseeds — delivering essential food, feed and fuel crops to customers across three continents.</p>
+    </div>
+    <div class="reveal" style="transition-delay:380ms">
+      <div class="hero-btns">
+        <button class="btn-gold" onclick="scrollTo_('contact')">Start a Conversation ›</button>
+        <button class="btn-ghost" onclick="scrollTo_('commodities')">Explore our commodities ›</button>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint">Scroll <svg class="chevron"><polyline points="6 9 12 15 18 9"/></svg></div>
+</section>
+
+<!-- ══════════════ STATS ══════════════ -->
+<section id="stats">
+  <div class="container">
+    <div class="reveal"><div class="eyebrow">BY THE NUMBERS</div></div>
+    <div class="stats-grid">
+      <div class="stat reveal" style="transition-delay:0ms">
+        <div class="stat-num sora" data-to="50" data-suffix="K+">0K+</div>
+        <div class="stat-label">Tons annual export capacity</div>
+      </div>
+      <div class="stat reveal" style="transition-delay:90ms">
+        <div class="stat-num sora" data-to="25" data-suffix="+">0+</div>
+        <div class="stat-label">Destination countries</div>
+      </div>
+      <div class="stat reveal" style="transition-delay:180ms">
+        <div class="stat-num sora" data-to="6" data-suffix="">0</div>
+        <div class="stat-label">Core commodities</div>
+      </div>
+      <div class="stat reveal" style="transition-delay:270ms">
+        <div class="stat-num sora" data-to="100" data-suffix="%">0%</div>
+        <div class="stat-label">Independently inspected lots</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ PURPOSE ══════════════ -->
+<section id="who">
+  <div id="purpose">
+    <div class="container">
+      <div class="inner" style="max-width:800px;margin:0 auto;text-align:center">
+        <div class="reveal"><div class="eyebrow center">OUR PURPOSE</div></div>
+        <div class="reveal" style="transition-delay:130ms">
+          <h2 class="sora">We connect the farmers of Ukraine's black-soil heartland to consumers worldwide — delivering <span class="gold-ul">essential food, feed and fuel crops</span>, safely and sustainably.</h2>
+        </div>
+        <div class="reveal" style="transition-delay:270ms">
+          <p>Like the world's leading agribusinesses, we believe trade begins with trust: in the farmer who grows the crop, in the lab that verifies it, and in the partner who ships it on time, every time.</p>
+        </div>
+        <div class="reveal" style="transition-delay:360ms"><div class="divider"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ COMMODITIES ══════════════ -->
+<section id="commodities" style="background:var(--off);padding:130px 0">
+  <div class="container">
+    <div class="comm-header">
+      <div class="reveal-l">
+        <div class="eyebrow">OUR COMMODITIES</div>
+        <h2 class="sora">Solutions Tailored to Your Market</h2>
+      </div>
+      <div class="reveal-r" style="transition-delay:160ms">
+        <p>Every lot is laboratory-tested and shipped with complete export documentation — certificate of origin, phytosanitary, quality and weight certificates.</p>
+      </div>
+    </div>
+    <div class="cards-grid">
+      <div class="card reveal-s" style="transition-delay:0ms">
+        <div class="card-img"><div class="card-img-inner"><span class="card-icon">🌽</span></div><span class="card-badge">TOP SELLER</span></div>
+        <div class="card-body">
+          <div class="card-title sora">Yellow Corn (Maize)</div>
+          <div class="card-desc">GMO-free feed and food grade corn from central Ukraine's chernozem belt — the backbone of global feed markets.</div>
+          <div class="chips"><span class="chip">Bulk / Big-bags</span></div>
+          <button class="card-cta" onclick="scrollTo_('contact')">Request specification ›</button>
+        </div>
+      </div>
+      <div class="card reveal-s" style="transition-delay:100ms">
+        <div class="card-img" style="background:#2A3D1C"><div class="card-img-inner"><span class="card-icon">🌾</span></div></div>
+        <div class="card-body">
+          <div class="card-title sora">Milling &amp; Feed Wheat</div>
+          <div class="card-desc">Class 2–3 milling wheat and feed wheat with protein levels contracted to your exact basis.</div>
+          <div class="chips"><span class="chip">Protein 10.5–12.5%</span><span class="chip">Bulk / Big-bags</span></div>
+          <button class="card-cta" onclick="scrollTo_('contact')">Request specification ›</button>
+        </div>
+      </div>
+      <div class="card reveal-s" style="transition-delay:200ms">
+        <div class="card-img" style="background:#3D2F0A"><div class="card-img-inner"><span class="card-icon">🌻</span></div><span class="card-badge">UKRAINE'S PRIDE</span></div>
+        <div class="card-body">
+          <div class="card-title sora">Sunflower Seeds</div>
+          <div class="card-desc">Oilseed and confectionery sunflower — the crop Ukraine leads the world in. Kernels available on request.</div>
+          <div class="chips"><span class="chip">Oil ≥ 44–50%</span><span class="chip">Bulk / Big-bags</span></div>
+          <button class="card-cta" onclick="scrollTo_('contact')">Request specification ›</button>
+        </div>
+      </div>
+      <div class="card reveal-s" style="transition-delay:0ms">
+        <div class="card-img" style="background:#1F3520"><div class="card-img-inner"><span class="card-icon">🌿</span></div></div>
+        <div class="card-body">
+          <div class="card-title sora">Feed &amp; Malting Barley</div>
+          <div class="card-desc">Spring and winter barley for feed and brewing industries across MENA and Europe.</div>
+          <div class="chips"><span class="chip">Bulk / Big-bags</span></div>
+          <button class="card-cta" onclick="scrollTo_('contact')">Request specification ›</button>
+        </div>
+      </div>
+      <div class="card reveal-s" style="transition-delay:100ms">
+        <div class="card-img" style="background:#1A2E18"><div class="card-img-inner"><span class="card-icon">🟡</span></div></div>
+        <div class="card-body">
+          <div class="card-title sora">Rapeseed (Canola)</div>
+          <div class="card-desc">Non-GMO rapeseed for crushing and low-carbon biofuel feedstock. ISCC EU certification available.</div>
+          <div class="chips"><span class="chip">Oil ≥ 40%</span><span class="chip">Bulk / Big-bags</span></div>
+          <button class="card-cta" onclick="scrollTo_('contact')">Request specification ›</button>
+        </div>
+      </div>
+      <div class="card reveal-s" style="transition-delay:200ms">
+        <div class="card-img" style="background:#1C2B3A"><div class="card-img-inner"><span class="card-icon">🫘</span></div></div>
+        <div class="card-body">
+          <div class="card-title sora">Soybeans</div>
+          <div class="card-desc">GMO-free Ukrainian soybeans for food and feed processing — fully traceable to origin.</div>
+          <div class="chips"><span class="chip">Protein ≥ 34–36%</span><span class="chip">Oil ≥ 18%</span><span class="chip">Bulk / Big-bags</span></div>
+          <button class="card-cta" onclick="scrollTo_('contact')">Request specification ›</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ STORY ══════════════ -->
+<section id="story" style="background:#fff;padding:130px 0">
+  <div class="container">
+    <div class="story-grid">
+      <div class="reveal-l">
+        <div class="photo-wrap" id="story-photo">
+          <div class="photo-inner"><span>👨‍🌾</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="reveal-r"><div class="eyebrow">OUR STORY</div></div>
+        <div class="reveal-r" style="transition-delay:80ms"><h2 class="sora">A Force Multiplier for Ukrainian Farmers</h2></div>
+        <div class="reveal-r" style="transition-delay:160ms"><p style="margin-top:24px;font-size:16px;line-height:1.78;color:var(--body)">Five Agra Select was built on a simple conviction: the world's finest black soil deserves a world-class route to market. We work directly with producers — no long broker chains — supporting their harvest and connecting it to buyers who demand verified quality.</p></div>
+        <ul class="checks">
+          <li class="check reveal-r" style="transition-delay:240ms"><div class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span>Direct contracts with trusted farms across the chernozem regions</span></li>
+          <li class="check reveal-r" style="transition-delay:320ms"><div class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span>Pre-harvest field monitoring and origin traceability for every lot</span></li>
+          <li class="check reveal-r" style="transition-delay:400ms"><div class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span>Independent surveyor inspection (SGS / Control Union) at loading</span></li>
+          <li class="check reveal-r" style="transition-delay:480ms"><div class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span>GAFTA / FOSFA standard contracts with transparent terms</span></li>
+        </ul>
+        <div class="reveal-r" style="transition-delay:560ms;margin-top:40px">
+          <button class="btn-gold" onclick="scrollTo_('contact')">Partner With Us ›</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ SUPPLY CHAIN ══════════════ -->
+<section id="chain">
+  <div class="chain-bg"></div>
+  <div class="chain-orb" id="chain-orb"></div>
+  <div class="container">
+    <div class="reveal"><div class="eyebrow dark">FIELD TO VESSEL</div></div>
+    <div class="reveal" style="transition-delay:100ms"><h2 class="sora">One Controlled Supply Chain</h2></div>
+    <div class="steps">
+      <div class="step reveal" style="transition-delay:0ms"><div class="step-dot"></div><div class="step-icon">🌱</div><h3 class="sora">Origination</h3><p>Direct partnerships with farms across Ukraine's most productive regions, with pre-harvest monitoring.</p></div>
+      <div class="step reveal" style="transition-delay:130ms"><div class="step-dot"></div><div class="step-icon">🔬</div><h3 class="sora">Quality Verification</h3><p>Independent laboratory analysis of every lot — moisture, protein, oil content, admixtures.</p></div>
+      <div class="step reveal" style="transition-delay:260ms"><div class="step-dot"></div><div class="step-icon">🚛</div><h3 class="sora">Storage &amp; Logistics</h3><p>Certified elevators; rail and truck delivery to Black Sea and Danube ports — container or bulk.</p></div>
+      <div class="step reveal" style="transition-delay:390ms"><div class="step-dot"></div><div class="step-icon">🚢</div><h3 class="sora">Global Shipment</h3><p>FOB / CIF / CFR shipments with full export documentation and marine insurance on request.</p></div>
+    </div>
+    <div class="chain-quote reveal" style="transition-delay:200ms">"From the field to the vessel — only <span class="gld">select quality</span> leaves our elevators."</div>
+  </div>
+</section>
+
+<!-- ══════════════ VALUES ══════════════ -->
+<section id="values" style="background:var(--cream);padding:130px 0">
+  <div class="container">
+    <div class="reveal"><div class="eyebrow">WHY US</div></div>
+    <div class="reveal" style="transition-delay:100ms"><h2 class="sora">Built on Trust. Proven by Quality.</h2></div>
+    <div class="values-grid">
+      <div class="value reveal-s" style="transition-delay:0ms"><div class="value-icon">🌾</div><h3 class="sora">Direct From Origin</h3><p>We buy at the farm gate, which means honest pricing, verified origin and full traceability for every shipment.</p></div>
+      <div class="value reveal-s" style="transition-delay:80ms"><div class="value-icon">🔬</div><h3 class="sora">Laboratory-Verified</h3><p>Independent surveyors certify quality and weight at loading. Certificates accompany every cargo.</p></div>
+      <div class="value reveal-s" style="transition-delay:160ms"><div class="value-icon">🚢</div><h3 class="sora">Flexible Shipments</h3><p>From a single 20' container to handysize bulk vessels — logistics tailored to your demand and port.</p></div>
+      <div class="value reveal-s" style="transition-delay:0ms"><div class="value-icon">📋</div><h3 class="sora">Complete Documentation</h3><p>Certificate of origin, phytosanitary, quality, weight, fumigation, EUR.1 — handled end to end.</p></div>
+      <div class="value reveal-s" style="transition-delay:80ms"><div class="value-icon">🤝</div><h3 class="sora">Contract Discipline</h3><p>GAFTA / FOSFA standard contracts. Clear terms, transparent communication, on-time performance.</p></div>
+      <div class="value reveal-s" style="transition-delay:160ms"><div class="value-icon">🌍</div><h3 class="sora">Global Reach</h3><p>Deliveries to the EU, Middle East, North Africa and Asia through Black Sea and Danube ports.</p></div>
+    </div>
+    <div class="certs reveal" style="transition-delay:220ms">
+      <span class="cert">GAFTA</span><span class="cert">FOSFA</span><span class="cert">ISCC EU</span>
+      <span class="cert">ISO 22000</span><span class="cert">NON-GMO</span><span class="cert">SGS INSPECTED</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ MARKETS ══════════════ -->
+<section id="markets" style="background:var(--off);padding:130px 0;position:relative;overflow:hidden">
+  <div class="markets-orb" id="markets-orb"></div>
+  <div class="container">
+    <div class="markets-grid">
+      <div class="reveal-l">
+        <div class="eyebrow">GLOBAL MARKETS</div>
+        <h2 class="sora" style="font-size:clamp(30px,3.8vw,50px);font-weight:700;letter-spacing:-.025em;color:var(--deep-1);line-height:1.1;margin-top:20px">Solutions for Every Region</h2>
+        <ul class="regions">
+          <li class="region"><span class="region-name sora">European Union</span><span class="region-crops">corn · rapeseed · sunflower</span></li>
+          <li class="region"><span class="region-name sora">Middle East</span><span class="region-crops">wheat · barley · corn</span></li>
+          <li class="region"><span class="region-name sora">North Africa</span><span class="region-crops">wheat · corn</span></li>
+          <li class="region"><span class="region-name sora">Turkey</span><span class="region-crops">sunflower seeds · corn</span></li>
+          <li class="region"><span class="region-name sora">South &amp; East Asia</span><span class="region-crops">soybeans · corn</span></li>
+        </ul>
+      </div>
+      <div class="reveal-r" style="transition-delay:160ms">
+        <div class="inco-card">
+          <div class="eyebrow dark">Incoterms 2020</div>
+          <h3 class="sora">Delivery Terms — Incoterms 2020</h3>
+          <div class="terms">
+            <div><div class="term-code">FOB</div><div class="term-desc">loaded on your vessel at Black Sea / Danube ports (Odesa, Chornomorsk, Izmail, Reni).</div></div>
+            <div><div class="term-code">CIF / CFR</div><div class="term-desc">delivered to your destination port; insurance included on CIF basis.</div></div>
+            <div><div class="term-code">DAP / FCA</div><div class="term-desc">truck, rail or container delivery for European buyers.</div></div>
+          </div>
+          <div class="tags">
+            <span class="tag">FOB</span><span class="tag">CIF</span><span class="tag">CFR</span>
+            <span class="tag">DAP</span><span class="tag">FCA</span><span class="tag">20'/40' containers</span><span class="tag">Bulk vessels</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ CONTACT ══════════════ -->
+<section id="contact">
+  <div class="contact-orb1" id="contact-orb"></div>
+  <div class="contact-orb2"></div>
+  <div class="container">
+    <div class="contact-grid">
+      <div class="reveal-l">
+        <div class="eyebrow dark">GET IN TOUCH</div>
+        <h2 class="sora">Request Your Export Offer</h2>
+        <p class="sub">Tell us the commodity, volume and destination — we reply with a firm offer within 24 hours.</p>
+        <div class="contact-info">
+          <div><div class="info-label">📍 Office</div><div class="info-val">Odesa, Ukraine</div></div>
+          <div><div class="info-label">✉️ Email</div><div class="info-val"><a href="mailto:export@fiveagraselect.com">export@fiveagraselect.com</a></div></div>
+          <div><div class="info-label">📞 Phone / WhatsApp</div><div class="info-val">+380 (XX) XXX-XX-XX</div></div>
+          <div><div class="info-label">🕐 Working Hours</div><div class="info-val">Mon–Fri, 9:00–18:00 EET</div></div>
+        </div>
+        <div class="contact-quote">"Our name is our promise — only select quality leaves our elevators."</div>
+      </div>
+      <div class="reveal-r" style="transition-delay:160ms">
+        <form class="glass" id="qform" onsubmit="submitForm(event)">
+          <div class="form-grid">
+            <div class="form-group"><label class="form-label">Name *</label><input class="form-input" required placeholder="Your name" /></div>
+            <div class="form-group"><label class="form-label">Company</label><input class="form-input" placeholder="Company name" /></div>
+            <div class="form-group"><label class="form-label">Email *</label><input class="form-input" type="email" required placeholder="you@company.com" /></div>
+            <div class="form-group"><label class="form-label">Phone / WhatsApp</label><input class="form-input" placeholder="+1 234 567 8900" /></div>
+            <div class="form-group"><label class="form-label">Commodity *</label>
+              <select class="form-select" required>
+                <option value="">Select commodity</option>
+                <option>Yellow Corn (Maize)</option>
+                <option>Milling &amp; Feed Wheat</option>
+                <option>Sunflower Seeds</option>
+                <option>Feed &amp; Malting Barley</option>
+                <option>Rapeseed (Canola)</option>
+                <option>Soybeans</option>
+              </select>
+            </div>
+            <div class="form-group"><label class="form-label">Volume (tons)</label><input class="form-input" placeholder="e.g. 5000" /></div>
+            <div class="form-group full"><label class="form-label">Message</label><textarea class="form-textarea" placeholder="Destination port, delivery terms, target price..."></textarea></div>
+          </div>
+          <div class="form-footer">
+            <button type="submit" class="btn-gold">Send Request ›</button>
+            <span class="form-success" id="form-msg" style="display:none">✓ Request received — we'll reply within 24 hours!</span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">
+          <div class="footer-logo-circle sora">FA</div>
+          <div>
+            <div style="font-size:14px;font-weight:700;color:#fff;letter-spacing:.06em">FIVE AGRA</div>
+            <div style="font-size:10px;color:var(--gold-1);letter-spacing:.24em">SELECT</div>
+          </div>
+        </div>
+        <p style="font-size:13px;line-height:1.68">Connecting Ukraine's harvest to the world — premium grain and oilseeds, from field to vessel.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Commodities</div>
+        <ul class="footer-links">
+          <li><button class="footer-link" onclick="scrollTo_('commodities')">Yellow Corn</button></li>
+          <li><button class="footer-link" onclick="scrollTo_('commodities')">Milling Wheat</button></li>
+          <li><button class="footer-link" onclick="scrollTo_('commodities')">Sunflower Seeds</button></li>
+          <li><button class="footer-link" onclick="scrollTo_('commodities')">Barley</button></li>
+          <li><button class="footer-link" onclick="scrollTo_('commodities')">Rapeseed</button></li>
+          <li><button class="footer-link" onclick="scrollTo_('commodities')">Soybeans</button></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-links">
+          <li><button class="footer-link" onclick="scrollTo_('who')">Who We Are</button></li>
+          <li><button class="footer-link" onclick="scrollTo_('story')">Our Story</button></li>
+          <li><button class="footer-link" onclick="scrollTo_('chain')">Why Choose Us</button></li>
+          <li><button class="footer-link" onclick="scrollTo_('markets')">Global Markets</button></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <ul style="list-style:none;font-size:13px;display:flex;flex-direction:column;gap:12px">
+          <li>Odesa, Ukraine</li>
+          <li><a href="mailto:export@fiveagraselect.com" style="color:inherit;text-decoration:none">export@fiveagraselect.com</a></li>
+          <li>+380 (XX) XXX-XX-XX</li>
+          <li>Mon–Fri, 9:00–18:00 EET</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Five Agra Select. All rights reserved.</span>
+      <span style="color:rgba(255,255,255,.55)">Grown in Ukraine 🇺🇦 · Trusted worldwide</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── Smooth scroll ──
+function scrollTo_(id) {
+  const el = document.getElementById(id) || document.querySelector('#'+id) || document.querySelector('[id="'+id+'"]');
+  if (el) el.scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+// ── Parallax scroll store (lerp) ──
+let scrollTarget = 0, scrollCurrent = 0;
+window.addEventListener('scroll', () => { scrollTarget = window.scrollY; }, { passive:true });
+
+const GRAIN_SPEEDS = [0.14,0.22,0.10,0.31,0.18,0.12,0.27,0.38,0.20,0.16];
+const GRAIN_ROTS   = [22,-18,48,-32,12,-42,36,-24,55,-10];
+const grainEls = Array.from({length:10}, (_,i) => document.getElementById('g'+i));
+const heroBg   = document.getElementById('hero-bg');
+const heroOrb  = document.getElementById('hero-orb');
+const heroTxt  = document.getElementById('hero-text');
+const chainOrb = document.getElementById('chain-orb');
+const contactOrb = document.getElementById('contact-orb');
+const storyPhoto = document.getElementById('story-photo');
+const marketsOrb = document.getElementById('markets-orb');
+
+let storyPhotoTop = 0, marketsOrbTop = 0;
+function measureTops() {
+  if (storyPhoto) storyPhotoTop = storyPhoto.getBoundingClientRect().top + window.scrollY;
+  if (marketsOrb) marketsOrbTop = marketsOrb.getBoundingClientRect().top + window.scrollY;
+}
+measureTops();
+window.addEventListener('resize', measureTops);
+
+function raf() {
+  const diff = scrollTarget - scrollCurrent;
+  if (Math.abs(diff) > 0.04) scrollCurrent += diff * 0.085;
+  const y = scrollCurrent;
+
+  if (heroBg)    heroBg.style.transform    = `translateY(${y*.38}px) scale(${Math.min(1+y*.00004,1.1)})`;
+  if (heroOrb)   heroOrb.style.transform   = `translateY(${y*.52}px)`;
+  if (heroTxt)   heroTxt.style.transform   = `translateY(${y*.12}px)`;
+  if (chainOrb)  chainOrb.style.transform  = `translateY(${y*.18}px)`;
+  if (contactOrb) contactOrb.style.transform = `translateY(${y*.22}px)`;
+  if (storyPhoto) storyPhoto.style.transform = `translateY(${(y-storyPhotoTop)*-.10}px)`;
+  if (marketsOrb) marketsOrb.style.transform = `translateY(${(y-marketsOrbTop)*-.14}px)`;
+
+  grainEls.forEach((el, i) => {
+    if (el) el.style.transform = `translateY(${y*GRAIN_SPEEDS[i]}px) rotate(${GRAIN_ROTS[i]+y*.02}deg)`;
+  });
+
+  requestAnimationFrame(raf);
+}
+requestAnimationFrame(raf);
+
+// ── Nav colour swap ──
+const nav    = document.getElementById('nav');
+const navT1  = document.getElementById('nav-t1');
+const navLinks = document.querySelectorAll('.nav-link');
+window.addEventListener('scroll', () => {
+  const scrolled = window.scrollY > 60;
+  nav.classList.toggle('scrolled', scrolled);
+  navT1.style.color = scrolled ? 'var(--deep-1)' : '#fff';
+  navLinks.forEach(l => l.style.color = scrolled ? 'var(--deep-1)' : '#fff');
+}, { passive:true });
+
+// ── Reveal on scroll ──
+const revealEls = document.querySelectorAll('.reveal,.reveal-l,.reveal-r,.reveal-s');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+}, { threshold:0.1, rootMargin:'0px 0px -50px 0px' });
+revealEls.forEach(el => obs.observe(el));
+
+// ── Count-up ──
+const countEls = document.querySelectorAll('[data-to]');
+const countObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target;
+    const to = +el.dataset.to;
+    const suffix = el.dataset.suffix || '';
+    const t0 = performance.now();
+    const tick = now => {
+      const p = Math.min((now-t0)/1700,1);
+      const eased = 1-Math.pow(1-p,3);
+      el.textContent = Math.round(eased*to)+suffix;
+      if (p<1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+    countObs.unobserve(el);
+  });
+}, { threshold:0.4 });
+countEls.forEach(el => countObs.observe(el));
+
+// ── Contact form ──
+function submitForm(e) {
+  e.preventDefault();
+  const msg = document.getElementById('form-msg');
+  msg.style.display = 'inline';
+  e.target.reset();
+}
+</script>
+</body>
+</html>
