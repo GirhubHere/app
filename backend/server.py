@@ -1,4 +1,4 @@
-from fastapi import FastAPI, APIRouter, HTTPException, Header
+from fastapi import FastAPI, APIRouter, HTTPException
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -18,16 +18,8 @@ mongo_url = os.environ["MONGO_URL"]
 client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ["DB_NAME"]]
 
-ADMIN_KEY = os.environ.get("ADMIN_KEY", "fiveagraadmin2026")
-
 app = FastAPI(title="Five Agra Select API")
 api_router = APIRouter(prefix="/api")
-
-
-# ---------- Auth helper ----------
-def require_admin(x_admin_key: Optional[str] = Header(default=None)) -> None:
-    if x_admin_key != ADMIN_KEY:
-        raise HTTPException(status_code=401, detail="Unauthorized")
 
 
 # ---------- Models ----------
@@ -56,20 +48,6 @@ class QuoteRequest(BaseModel):
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 
-class SiteConfigUpdate(BaseModel):
-    phone: Optional[str] = Field(default=None, max_length=80)
-    email: Optional[str] = Field(default=None, max_length=200)
-    office: Optional[str] = Field(default=None, max_length=200)
-    hours: Optional[str] = Field(default=None, max_length=100)
-
-
-class SiteConfig(BaseModel):
-    phone: str = ""
-    email: str = ""
-    office: str = ""
-    hours: str = ""
-
-
 # ---------- Routes ----------
 @api_router.get("/")
 async def root():
@@ -81,7 +59,6 @@ async def health():
     return {"status": "ok", "ts": datetime.now(timezone.utc).isoformat()}
 
 
-# ── Quote requests ──
 @api_router.post("/quote-requests", response_model=QuoteRequest, status_code=201)
 async def create_quote_request(payload: QuoteRequestCreate):
     allowed = {"corn", "wheat", "sunflower", "barley", "rapeseed", "soybean"}
@@ -95,8 +72,7 @@ async def create_quote_request(payload: QuoteRequestCreate):
 
 
 @api_router.get("/quote-requests", response_model=List[QuoteRequest])
-async def list_quote_requests(limit: int = 200, x_admin_key: Optional[str] = Header(default=None)):
-    require_admin(x_admin_key)
+async def list_quote_requests(limit: int = 100):
     items = await db.quote_requests.find({}, {"_id": 0}).sort("created_at", -1).to_list(limit)
     for it in items:
         if isinstance(it.get("created_at"), str):
@@ -105,33 +81,6 @@ async def list_quote_requests(limit: int = 200, x_admin_key: Optional[str] = Hea
             except ValueError:
                 it["created_at"] = datetime.now(timezone.utc)
     return items
-
-
-# ── Site config (client-editable contact info) ──
-@api_router.get("/site-config", response_model=SiteConfig)
-async def get_site_config():
-    doc = await db.site_config.find_one({"_id": "main"}, {"_id": 0})
-    if not doc:
-        return SiteConfig()
-    return SiteConfig(**{k: v for k, v in doc.items() if k in SiteConfig.model_fields})
-
-
-@api_router.put("/site-config", response_model=SiteConfig)
-async def update_site_config(
-    payload: SiteConfigUpdate,
-    x_admin_key: Optional[str] = Header(default=None),
-):
-    require_admin(x_admin_key)
-    update_data = {k: v for k, v in payload.model_dump().items() if v is not None}
-    if not update_data:
-        raise HTTPException(status_code=400, detail="No fields provided")
-    await db.site_config.update_one(
-        {"_id": "main"},
-        {"$set": update_data},
-        upsert=True,
-    )
-    doc = await db.site_config.find_one({"_id": "main"}, {"_id": 0})
-    return SiteConfig(**{k: v for k, v in doc.items() if k in SiteConfig.model_fields})
 
 
 app.include_router(api_router)
